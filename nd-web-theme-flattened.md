@@ -11,15 +11,27 @@ You are producing content for a Conductor-managed nd.edu site running NDT4. The 
 
 Why this matters: AI-generated pages typically fail by re-inventing what the theme provides — inline styles, raw hex colors, invented class names (`callout`, `row`, `columns`), duplicate hero titles. Those pages look almost right, then break in dark mode, on mobile, or at the next theme update. Everything you need already exists as a theme component; your task is selection and composition, not invention.
 
+## Live theme documentation (MCP) — optional
+
+The theme's Storybook is served over the Model Context Protocol at **`https://webtheme.nd.edu/mcp`** (read-only, no login). If the tool you're using supports MCP servers, connect it — it exposes three tools that are authoritative for component markup and options, and the reference sections in this document are a snapshot that can lag behind the theme:
+
+- `docs-list` — every component, collection, template, and docs page, with its ID. Call once per task; the response is long.
+- `docs-show` (`id`) — a component's description, options table, rendered HTML for its first stories, the IDs of its remaining stories, and its modifier-class / CSS / accessibility notes. Also returns whole docs pages (`foundation-colors--docs`, `foundation-utilities--docs`, `foundation-grid--docs`, `foundation-typography--docs`, `foundation-accessibility--docs`).
+- `docs-show-story` (`storyId`) — the HTML for one specific variant, e.g. `components-notice--warning`.
+
+Rules when they're available: never invent an option, modifier, or class that `docs-show` doesn't list; only use IDs the tools returned; and remember Storybook renders whole pages — the site header/footer, page headers, page title, navigation, and `templates-*` entries are produced by Conductor and the theme, so read them for context but never copy them into content HTML. Where MCP output and this document disagree, MCP wins.
+
+Without MCP, everything you need is below.
+
 ## Workflow
 
 1. **Understand the content.** What is this page for, who reads it, what should they do next? Get real copy or write it; structure beats decoration.
 
 2. **Review the "Page Anatomy" section below first** — it defines the theme/content boundary and the rules that prevent the classic failures.
 
-3. **Pick components from the reference sections below** (all included in this document): text & content components, cards & media, interactive components, banners & sections, forms, foundation (grid/colors/utilities), and Conductor CMS notes.
+3. **Pick components from the reference sections below** (all included in this document): text & content components, cards & media, interactive components, banners & sections, forms, foundation (grid/colors/utilities), and Conductor CMS notes. If the MCP tools above are connected, confirm each component's markup and options with `docs-show` before using it.
 
-4. **Compose the fragment.** Copy component markup from the references and adapt it. Start headings at `<h2>` (the page title is the theme's `<h1>`). Prefer plain semantic HTML for prose — it's already styled.
+4. **Compose the fragment.** Copy component markup from `docs-show` or the references and adapt it. Start headings at `<h2>` (the page title is the theme's `<h1>`). Prefer plain semantic HTML for prose — it's already styled.
 
 5. **Verify against the checklist below.** Fix anything that fails.
 
@@ -29,7 +41,7 @@ Why this matters: AI-generated pages typically fail by re-inventing what the the
 
 - No `<h1>` in the fragment; heading levels are sequential (h2 → h3 → h4, no skips).
 - No `style=""` attributes. No raw hex colors — theme classes or `var(--*)` tokens only.
-- Every class name exists in the theme (if you didn't copy it from a reference, look it up — don't guess; Bootstrap/Foundation-era names like `row`, `columns`, `label`, `callout`, `btn-primary` are not NDT4).
+- Every class name exists in the theme (if you didn't copy it from `docs-show` or a reference, look it up — don't guess; Bootstrap/Foundation-era names like `row`, `columns`, `label`, `callout`, `btn-primary` are not NDT4).
 - No `<script>` tags. No custom fonts. No re-implemented components (the theme's `.notice` is the callout; `.btn` is the button; `.card` is the card).
 - Images: real `alt` text (or `alt=""` if decorative), `width`/`height` attributes, uploaded-asset paths (`/assets/<id>/<width>x/<file>`) rather than external hotlinks where possible.
 - Links: descriptive text (not "click here"); external links are fine as plain `<a>` — the theme decorates them.
