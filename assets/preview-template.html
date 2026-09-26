@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — NDT4 Preview</title>
+  <link rel="stylesheet" href="https://conductor.nd.edu/stylesheets/themes/ndt/4.0/ndt.css">
+  <style>
+    /* Preview-only banner so nobody mistakes this for a live page */
+    .ndt-preview-note { background: #ae9142; color: #0c2340; font-size: 0.8rem; padding: 0.25rem 1rem; text-align: center; }
+  </style>
+</head>
+<body id="preview" class="{{PAGE_CLASS}} nav-top--true" data-theme="light" vocab="https://schema.org/">
+  {{SPRITES}}
+  <div class="ndt-preview-note">Local preview — Notre Dame Web Theme v4. Paste the content fragment (not this whole file) into Conductor.</div>
+  <div id="wrapper" class="wrapper">
+    <header id="header" class="site-header">
+      <div class="header-group header-group--inline-xl">
+        <div class="header-title">
+          <div class="header-title-name">
+            <div id="site-title" class="site-title"><a href="#">{{SITE_TITLE}}</a></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main id="content" class="site-content">
+      <div class="page-header">
+        <div class="page-title-wrapper">
+          <h1 class="page-title" data-length="{{TITLE_LENGTH}}">{{TITLE}}</h1>
+        </div>
+      </div>
+      <div class="page-primary">
+{{CONTENT}}
+      </div>
+    </main>
+  </div>
+  <script src="https://conductor.nd.edu/javascripts/themes/ndt/4.0/ndt.js"></script>
+</body>
+</html>
