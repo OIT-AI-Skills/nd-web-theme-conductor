@@ -107,7 +107,7 @@ Ask for what you need in plain language — the skill handles the theme mechanic
 
 - "Create a page for our new AI workshop series with three cards and a registration call-to-action."
 - "Here's the HTML of our tool page — it was AI-generated and doesn't match the theme. Rebuild it."
-- "Make an FAQ page about travel reimbursement with eight questions."
+- "Build a landing page for our annual lecture series — full-width banner, speaker cards, and a stats band."
 
 You'll get two files back: a `*-content.html` fragment (paste into Conductor's **HTML source view**) and a `*-preview.html` (open in a browser to review first — it loads the production theme CSS, so what you see is what Conductor will render).
 
